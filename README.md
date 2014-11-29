@@ -2,7 +2,6 @@
 =====
 [![Gem Version](https://badge.fury.io/rb/dcell.png)](http://rubygems.org/gems/dcell)
 [![Build Status](https://secure.travis-ci.org/niamster/dcell.png?branch=master)](http://travis-ci.org/niamster/dcell)
-[![Dependency Status](https://gemnasium.com/celluloid/dcell.png)](https://gemnasium.com/celluloid/dcell)
 [![Code Climate](https://codeclimate.com/github/niamster/dcell.png)](https://codeclimate.com/github/niamster/dcell)
 [![Coverage Status](https://coveralls.io/repos/niamster/dcell/badge.png?branch=master)](https://coveralls.io/r/niamster/dcell)
 
