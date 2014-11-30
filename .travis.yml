@@ -8,6 +8,7 @@ before_script:
 services:
   - mongodb
   - redis-server
+  - cassandra
 
 rvm:
   - 1.9.3
@@ -33,3 +34,4 @@ branches:
 env:
     - DCELL_TEST_ADAPTER=redis
     - DCELL_TEST_ADAPTER=mongodb
+    - DCELL_TEST_ADAPTER=cassandra
