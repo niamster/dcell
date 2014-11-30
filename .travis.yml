@@ -28,8 +28,8 @@ matrix:
     - rvm: jruby
     - rvm: jruby-head
     - rvm: rbx-2.2.10
-    - DCELL_TEST_ADAPTER=cassandra
-    - DCELL_TEST_ADAPTER=zk
+    - env: DCELL_TEST_ADAPTER=cassandra
+    - env: DCELL_TEST_ADAPTER=zk
 
 branches:
   only:
