@@ -45,7 +45,7 @@ end
 
 options = {:id => TEST_NODE[:id], :addr => "tcp://#{TEST_NODE[:addr]}:#{TEST_NODE[:port]}"}
 options.merge! test_options
-DCell.start options
-
+DCell.setup options
 TestActor.supervise_as :test_actor
+DCell.run!
 sleep
