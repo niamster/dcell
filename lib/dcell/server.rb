@@ -39,16 +39,37 @@ module DCell
 
     class InvalidMessageError < StandardError; end # undecodable message
 
+    def symbolize!(msg)
+      return unless msg.kind_of? Hash
+      msg.symbolize_keys!
+      msg.each_value do |val|
+        if val.kind_of? Hash
+          symbolize! val
+        elsif val.kind_of? Array
+          val.each do |entry|
+            symbolize! entry
+          end
+        end
+      end
+    end
+
     # Decode incoming messages
     def decode_message(message)
-      if message[0..1].unpack("CC") == [Marshal::MAJOR_VERSION, Marshal::MINOR_VERSION]
-        begin
-          Marshal.load message
-        rescue => ex
-          raise InvalidMessageError, "invalid message: #{ex}"
+      begin
+        msg = MessagePack.unpack(message)
+        symbolize! msg
+      rescue => ex
+        raise InvalidMessageError, "couldn't unpack message: #{ex}"
+      end
+      begin
+        klass = DCell::const_get msg[:type]
+        o = klass.new *msg[:args]
+        if o.respond_to? :id and msg[:id]
+          o.id = msg[:id]
         end
-      else
-        raise InvalidMessageError, "couldn't determine message format: #{message}"
+        o
+      rescue => ex
+        raise InvalidMessageError, "invalid message: #{ex}"
       end
     end
   end
