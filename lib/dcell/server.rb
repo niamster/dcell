@@ -39,10 +39,12 @@ module DCell
 
     class InvalidMessageError < StandardError; end # undecodable message
 
-    def symbolize!(msg)
-      return unless msg.kind_of? Hash
-      msg.symbolize_keys!
-      msg.each_value do |val|
+    def symbolize!(h)
+      return unless h.kind_of? Hash
+      h.keys.each do |k|
+        ks = k.to_sym
+        val = h.delete k
+        h[ks] = val
         if val.kind_of? Hash
           symbolize! val
         elsif val.kind_of? Array
