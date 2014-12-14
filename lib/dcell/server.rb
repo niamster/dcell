@@ -64,7 +64,7 @@ module DCell
         raise InvalidMessageError, "couldn't unpack message: #{ex}"
       end
       begin
-        klass = DCell::const_get msg[:type]
+        klass = ::Object::const_get msg[:type]
         o = klass.new *msg[:args]
         if o.respond_to? :id and msg[:id]
           o.id = msg[:id]
