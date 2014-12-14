@@ -55,6 +55,15 @@ module DCell
       end
     end
 
+    def full_const_get(name)
+      list = name.split("::")
+      obj = Object
+      list.each do |x|
+        obj = obj.const_get x
+      end
+      obj
+    end
+
     # Decode incoming messages
     def decode_message(message)
       begin
@@ -64,7 +73,7 @@ module DCell
         raise InvalidMessageError, "couldn't unpack message: #{ex}"
       end
       begin
-        klass = ::Object::const_get msg[:type]
+        klass = full_const_get msg[:type]
         o = klass.new *msg[:args]
         if o.respond_to? :id and msg[:id]
           o.id = msg[:id]
