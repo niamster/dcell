@@ -42,8 +42,8 @@ module DCell
     # Decode incoming messages
     def decode_message(message)
       begin
-        msg = MessagePack.unpack(message)
-        Utils::symbolize! msg
+        msg = MessagePack.unpack(message, options={:symbolize_keys => true})
+        #Utils::symbolize! msg
       rescue => ex
         raise InvalidMessageError, "couldn't unpack message: #{ex}"
       end
