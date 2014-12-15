@@ -114,9 +114,8 @@ module DCell
 
         next if response.is_a? RetryResponse
         if response.is_a? ErrorResponse
-          klass = ::Object::const_get(response.value[:class])
+          klass = Utils::full_const_get response.value[:class]
           msg = response.value[:msg]
-          # FIXME: abort?
           raise klass.new msg
         end
         return response.value

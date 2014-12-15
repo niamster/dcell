@@ -108,7 +108,7 @@ module DCell
           end
           rsp = SuccessResponse.new(@id, @sender[:address], value)
         else
-          rsp = ErrorResponse.new(@id, @sender[:address], {:class => Celluloid::DeadActorError.name, :msg => nil})
+          rsp = ErrorResponse.new(@id, @sender[:address], {:class => ::Celluloid::DeadActorError.name, :msg => nil})
         end
         Node[@sender[:id]].async.send_message rsp
       end

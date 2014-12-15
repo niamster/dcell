@@ -8,6 +8,7 @@ require 'msgpack'
 Celluloid::ZMQ.init
 
 require 'dcell/version'
+require 'dcell/utils'
 require 'dcell/actor_proxy'
 require 'dcell/directory'
 require 'dcell/messages'
