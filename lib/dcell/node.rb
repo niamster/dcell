@@ -166,9 +166,6 @@ module DCell
     # Relay message to remote actor
     def relay(message)
       request = Message::Relay.new(Thread.mailbox, message)
-
-      # send_message request
-      # save_request request
       send_request request
     end
 
