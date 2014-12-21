@@ -20,7 +20,29 @@ module DCell
       end
     end
 
-    # Find an item by its ID
+    # Iterates over registered and alive items
+    def each
+      @lock.synchronize do
+        @items.each do |id, ref|
+          yield id, ref.__getobj__ rescue WeakRef::RefError
+        end
+      end
+    end
+
+    # Clears all items from the cache
+    # If block is given, iterates over the cached items
+    def clear
+      @lock.synchronize do
+        if block_given?
+          @items.each do |id, ref|
+            yield id, ref.__getobj__ rescue WeakRef::RefError
+          end
+        end
+        @items.clear
+      end
+    end
+
+    # Finds an item by its ID
     def find(id)
       @lock.synchronize do
         begin
