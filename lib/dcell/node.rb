@@ -1,5 +1,3 @@
-require 'weakref'
-
 module DCell
   # A node in a DCell cluster
   class Node

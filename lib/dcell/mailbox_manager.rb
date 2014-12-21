@@ -1,5 +1,3 @@
-require 'weakref'
-
 module DCell
   # Manage mailbox addresses of local actors
   class MailboxManager

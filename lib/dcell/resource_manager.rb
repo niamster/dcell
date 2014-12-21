@@ -1,3 +1,5 @@
+require 'weakref'
+
 module DCell
   class ResourceManager
     def initialize
