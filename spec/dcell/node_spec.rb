@@ -1,6 +1,14 @@
 describe DCell::Node do
+  def wait_for_actor(id)
+    30.times do
+      node = DCell::Node[TEST_NODE[:id]]
+      return node if node
+      sleep 1
+    end
+  end
+
   before do
-    @node = DCell::Node[TEST_NODE[:id]]
+    @node = wait_for_actor TEST_NODE[:id]
     @node.id.should == TEST_NODE[:id]
   end
 
