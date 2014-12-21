@@ -122,6 +122,7 @@ module DCell
       transition :shutdown
       @socket.close if @socket
       NodeCache.delete id
+      MailboxManager.delete Thread.mailbox
     end
 
     # Obtain the node's 0MQ socket
