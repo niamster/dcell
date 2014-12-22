@@ -2,9 +2,8 @@ describe DCell::Node do
   def wait_for_actor(id)
     30.times do
       node = DCell::Node[TEST_NODE[:id]]
-      return node if node
       begin
-        return node if node.all
+        return node if node and node.all
       rescue Celluloid::DeadActorError
       end
       sleep 1
