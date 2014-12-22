@@ -3,6 +3,10 @@ describe DCell::Node do
     30.times do
       node = DCell::Node[TEST_NODE[:id]]
       return node if node
+      begin
+        return node if node.all
+      rescue Celluloid::DeadActorError
+      end
       sleep 1
     end
   end
