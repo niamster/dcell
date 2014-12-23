@@ -136,7 +136,7 @@ module DCell
       raise ::Celluloid::DeadActorError.new
     end
 
-    def handle_response(response)
+    def handle_response(request, response)
       unless response
         dead_actor if request.kind_of? Message::Relay
         return false
@@ -155,7 +155,7 @@ module DCell
       # FIXME: need a robust way to retry the lost requests
       loop do
         response = push_request request
-        if handle_response response
+        if handle_response request, response
           return response.value
         end
       end
