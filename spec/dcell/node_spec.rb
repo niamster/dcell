@@ -4,7 +4,7 @@ describe DCell::Node do
       node = DCell::Node[TEST_NODE[:id]]
       begin
         return node if node and node.all
-      rescue Celluloid::DeadActorError
+      rescue Celluloid::DeadActorError, Celluloid::Task::TerminatedError
       end
       sleep 1
     end
