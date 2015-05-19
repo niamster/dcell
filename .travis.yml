@@ -19,10 +19,12 @@ rvm:
   - rbx-2
 
 matrix:
+  include:
+    - rvm: jruby-20mode
+      env: JRUBY_OPTS="$JRUBY_OPTS --2.0"
   allow_failures:
     - rvm: ruby-head
     - rvm: jruby-20mode
-      env: JRUBY_OPTS="$JRUBY_OPTS --2.0"
     - rvm: rbx-2
     - env: DCELL_TEST_ADAPTER=cassandra
     - env: DCELL_TEST_ADAPTER=zk
