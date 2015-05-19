@@ -1,11 +1,12 @@
 #!/bin/sh
 
 wd=$PWD
-tmp=$wd/tmp
 
-for dep in $wd/travis/deps/*.sh; do
-    mkdir -p $tmp
-    cd $tmp
-    sh $dep
-    rm -rf $tmp
-done
+sudo apt-get install zookeeperd
+
+deb=$wd/travis/deb
+
+dpkg -i $deb/libsodium13_1.0.1-1_amd64.deb
+dpkg -i $deb/libsodium-dev_1.0.1-1_amd64.deb
+dpkg -i $deb/libzmq3_4.0.5+dfsg-3_amd64.deb
+dpkg -i $deb/libzmq3-dev_4.0.5+dfsg-3_amd64.deb
