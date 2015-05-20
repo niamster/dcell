@@ -94,7 +94,7 @@ module DCell
   class RequestServer < Server
     def initialize
       privkey = DCell.crypto ? DCell.crypto_keys[:privkey] : nil
-      socket, addr = Socket.server(DCell.addr, DCell.id, privkey: privkey)
+      socket, addr = Socket.server(DCell.addr, DCell.id, privkey)
       DCell.addr = addr
       super(socket)
     end
@@ -108,7 +108,7 @@ module DCell
       uri = URI(DCell.addr)
       addr = "#{uri.scheme}://#{uri.host}:*"
       privkey = DCell.crypto ? DCell.crypto_keys[:privkey] : nil
-      socket, @addr = Socket.server(addr, DCell.id, privkey: privkey)
+      socket, @addr = Socket.server(addr, DCell.id, privkey)
       super(socket)
     end
   end
@@ -116,7 +116,7 @@ module DCell
   # Sets up client server
   class ClientServer < Server
     def initialize(addr, linger, pubkey)
-      socket = Socket.client(addr, DCell.id, linger: linger, pubkey: pubkey)
+      socket = Socket.client(addr, DCell.id, pubkey, linger)
       super(socket)
     end
   end

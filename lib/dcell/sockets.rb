@@ -22,7 +22,7 @@ module DCell
     end
 
     # Bind to the given 0MQ address (in URL form ala tcp://host:port)
-    def server(addr, id, linger: 1000, privkey: nil)
+    def server(addr, id, privkey=nil, linger=1000)
       fail IOError unless addr && id
 
       socket = Celluloid::ZMQ::RouterSocket.new
@@ -41,7 +41,7 @@ module DCell
     end
 
     # Connect to the given 0MQ address (in URL form ala tcp://host:port)
-    def client(addr, id, linger: 1000, pubkey: nil)
+    def client(addr, id, pubkey=nil, linger=1000)
       fail IOError unless addr && id
 
       socket = Celluloid::ZMQ::DealerSocket.new
